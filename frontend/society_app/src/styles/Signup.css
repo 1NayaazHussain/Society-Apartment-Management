@@ -198,7 +198,44 @@
     color: #0d7a34;
     text-decoration: underline;
 }
+.flat-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin-top:15px;
+    max-height:250px;
+    overflow-y:auto;
+}
 
+.flat-grid button{
+    width:100%;
+    height:50px;
+    border:none;
+    border-radius:10px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+.flat-grid button:hover{
+    background-color:crimson;
+}
+
+.available{
+    background:#22c55e;
+    color:white;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.occupied{
+    background:#ef4444;
+    color:white;
+    cursor:not-allowed;
+}
+.flat-selector h4{
+    margin-top:15px;
+    margin-bottom:10px;
+    color:#334155;
+}
 /* ===== RESPONSIVE ===== */
 
 @media (max-width: 768px) {

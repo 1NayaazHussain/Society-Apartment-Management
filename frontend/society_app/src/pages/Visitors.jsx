@@ -9,6 +9,7 @@ const Visitors = () => {
     const [search, setSearch] = useState("");
 
     const navigate = useNavigate();
+    const role = localStorage.getItem("role");
 
     const fetchVisitors = async () => {
         try {
@@ -80,12 +81,14 @@ const Visitors = () => {
 
             <div className="resident-actions">
 
-                <button
-                    className="add-btn"
-                    onClick={() => navigate("/addvisitor")}
-                >
-                    + Add Visitor
-                </button>
+                {role === "admin" && (
+                    <button
+                        className="add-btn"
+                        onClick={() => navigate("/addvisitor")}
+                    >
+                        + Add Visitor
+                    </button>
+                )}
 
                 <input
                     type="text"
@@ -130,6 +133,7 @@ const Visitors = () => {
 
                         <thead>
                             <tr>
+                                <th>S.No</th>
                                 <th>Visitor Name</th>
                                 <th>Phone</th>
                                 <th>Flat No</th>
@@ -138,13 +142,14 @@ const Visitors = () => {
                                 <th>Time In</th>
                                 <th>Time Out</th>
                                 <th>Status</th>
-                                <th>Actions</th>
+                                {role === "admin" && <th>Actions</th>}
                             </tr>
                         </thead>
 
                         <tbody>
-                            {filteredVisitors.map((visitor) => (
+                            {filteredVisitors.map((visitor, index) => (
                                 <tr key={visitor._id}>
+                                    <td>{index + 1}</td>
                                     <td>{visitor.visitorName}</td>
                                     <td>{visitor.phone}</td>
                                     <td>{visitor.flatNo}</td>
@@ -153,16 +158,16 @@ const Visitors = () => {
                                     <td>{visitor.timeIn}</td>
                                     <td>{visitor.timeOut}</td>
                                     <td>{visitor.status}</td>
-                                    <td>
-                                        {visitor.status === "Inside" && (
+                                    {role === "admin" && (
+                                        <td>
                                             <button
                                                 className="left-btn"
-                                                onClick={() => handleMarkLeft(visitor._id)}
+                                                onClick={() => markVisitorLeft(visitor._id)}
                                             >
                                                 Mark Left
                                             </button>
-                                        )}
-                                    </td>
+                                        </td>
+                                    )}
                                 </tr>
                             ))}
                         </tbody>

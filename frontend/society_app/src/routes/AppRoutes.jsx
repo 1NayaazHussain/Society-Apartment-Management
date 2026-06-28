@@ -9,6 +9,7 @@ import AddResident from "../pages/AddResident";
 import EditResident from "../pages/EditResident";
 import Visitors from "../pages/Visitors";
 import AddVisitors from "../pages/AddVisitor";
+import PendingResidents from "../pages/PendingResidents";
 export default function AppRoutes() {
   return (
     <BrowserRouter>
@@ -22,6 +23,7 @@ export default function AppRoutes() {
           <Route path="/edit-resident/:id"element={<EditResident />}/>
           <Route path="/visitors" element={<Visitors />} />
           <Route path="/addvisitor" element={<AddVisitors />} />
+          <Route path="/pending-residents"element={<PendingResidents />}/>
         <Route path="/terms" element={<Terms />} />
       </Routes>
     </BrowserRouter>

@@ -9,6 +9,8 @@
     font-size: 32px;
     color: #166534;
     margin-bottom: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    
 }
 
 
@@ -48,7 +50,7 @@ thead {
 
 th {
     padding: 16px;
-    text-align: left;
+    text-align: center;
     font-size: 15px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
@@ -58,6 +60,7 @@ td {
     padding: 16px;
     border-bottom: 1px solid #e5e7eb;
     color: #334155;
+    text-align:center;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
@@ -71,7 +74,7 @@ tbody tr:hover {
 }
 
 
-td:last-child {
+.status-cell {
     font-weight: 600;
     color: #16a34a;
 }

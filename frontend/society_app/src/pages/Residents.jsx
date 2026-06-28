@@ -7,6 +7,7 @@ const Residents = () => {
   const [residents, setResidents] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const role = localStorage.getItem("role");
   const [search, setSearch] = useState("");
 
   const fetchResidents = async () => {
@@ -61,12 +62,14 @@ const Residents = () => {
       </button>
       <div className="resident-actions">
 
-        <button
-          className="add-btn"
-          onClick={() => navigate("/add-resident")}
-        >
-          + Add Resident
-        </button>
+        {role === "admin" && (
+          <button
+            className="add-btn"
+            onClick={() => navigate("/add-resident")}
+          >
+            + Add Resident
+          </button>
+        )}
 
         <input
           type="text"
@@ -85,38 +88,41 @@ const Residents = () => {
           <table>
             <thead>
               <tr>
+                <th>S.No</th>
                 <th>Name</th>
                 <th>Flat No</th>
                 <th>Phone</th>
                 <th>Email</th>
                 <th>Status</th>
-                <th>Actions</th>
               </tr>
             </thead>
 
             <tbody>
-              {filteredResidents.map((r) => (
+              {filteredResidents.map((r,index) => (
                 <tr key={r._id}>
+                  <td>{index + 1}</td>
                   <td>{r.name}</td>
                   <td>{r.flatNo}</td>
                   <td>{r.phone}</td>
                   <td>{r.email}</td>
                   <td>{r.status}</td>
-                  <td>
-                    <button
-                      className="edit-btn"
-                      onClick={() => navigate(`/edit-resident/${r._id}`)}
-                    >
-                      Edit
-                    </button>
+                  {role === "admin" && (
+                    <td>
+                      <button
+                        className="edit-btn"
+                        onClick={() => navigate(`/edit-resident/${r._id}`)}
+                      >
+                        Edit
+                      </button>
 
-                    <button
-                      className="delete-btn"
-                      onClick={() => handleDelete(r._id)}
-                    >
-                      Delete
-                    </button>
-                  </td>
+                      <button
+                        className="delete-btn"
+                        onClick={() => handleDelete(r._id)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  )}
                 </tr>
               ))}
             </tbody>
