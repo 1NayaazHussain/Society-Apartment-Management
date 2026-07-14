@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../styles/Login.css";
 
 export default function Login() {
@@ -19,13 +20,24 @@ export default function Login() {
       });
 
       if (res.data.success) {
+        console.log(res.data.user);
 
         localStorage.setItem(
           "role",
           res.data.user.role
         );
+        localStorage.setItem(
+  "fullName",
+  res.data.user.fullName
+);
+
+localStorage.setItem(
+  "flatNo",
+  res.data.user.flatNo
+);
 
         alert("Login successful");
+     
 
         navigate("/dashboard");
       }
@@ -42,7 +54,19 @@ export default function Login() {
   return (
     <div className="login-container">
       <div className="login-card">
-        <h2>Society Management Platform</h2>
+        <div className="login-header">
+
+    <div className="login-logo">
+        🏢
+    </div>
+
+    <h2>Society Management</h2>
+
+    <p>
+        Welcome back! Login to continue.
+    </p>
+
+</div>
 
         <form onSubmit={handleLogin}>
           <input
@@ -59,7 +83,9 @@ export default function Login() {
 
           <button type="submit">Login</button>
           <p className="login-link">
-            Don't have an account? <a href="/signup">Signup</a> </p>
+    Don't have an account?{" "}
+    <Link to="/signup">Sign Up</Link>
+</p>
         </form>
       </div>
     </div>

@@ -142,7 +142,12 @@ function AddVisitor() {
         >
           Save Visitor
         </button>
-
+<button
+    className="back-btn"
+    onClick={() => navigate("/visitors")}
+>
+    Back to Visitors
+</button>
       </div>
     </div>
   );

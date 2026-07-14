@@ -6,7 +6,8 @@ import {
   FaUser,
   FaHome,
   FaPhone,
-  FaEnvelope
+  FaEnvelope,
+  FaArrowLeft
 } from "react-icons/fa";
 
 function AddResident() {
@@ -34,7 +35,7 @@ function AddResident() {
         formData
       );
 
-      
+
 
       navigate("/residents");
 
@@ -48,10 +49,32 @@ function AddResident() {
 
   return (
     <div className="add-resident-page">
+      <div className="floating-bg">
+        <span className="bubble bubble1"></span>
+        <span className="bubble bubble2"></span>
+        <span className="bubble bubble3"></span>
+        <span className="bubble bubble4"></span>
+        <span className="bubble bubble5"></span>
+    </div>
       <div className="add-resident-card">
 
+      <div className="page-title">
+
+    <div className="title-icon">
+
+        <FaUser />
+
+    </div>
+
+    <div>
+
         <h2>Add Resident</h2>
-        <p>Add a new resident to the society</p>
+
+        <p>Register a new resident in the society.</p>
+
+    </div>
+
+</div>
 
         <div className="form-grid">
 
@@ -115,6 +138,13 @@ function AddResident() {
           onClick={handleSubmit}
         >
           Save Resident
+        </button>
+        <button
+          className="back-btn"
+          onClick={() => navigate("/residents")}
+        >
+          
+    <FaArrowLeft />Back
         </button>
 
       </div>

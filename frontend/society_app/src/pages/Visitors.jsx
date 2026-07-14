@@ -2,6 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../styles/Residents.css";
 import { useNavigate } from "react-router-dom";
+import {
+    FaUsers,
+    FaDoorOpen,
+    FaDoorClosed,
+    FaSearch,
+    FaSignOutAlt 
+} from "react-icons/fa"
 
 const Visitors = () => {
     const [visitors, setVisitors] = useState([]);
@@ -71,15 +78,32 @@ const Visitors = () => {
     return (
         <div className="page">
 
-            <h2>Visitors</h2>
-            <button
-                className="dashboard-btn"
-                onClick={() => navigate("/dashboard")}
-            >
-                Back to Dashboard
-            </button>
+            <div className="visitor-header">
 
-            <div className="resident-actions">
+                <div className="visitor-header-left">
+
+                    <span className="section-tag">
+                        VISITOR MANAGEMENT
+                    </span>
+
+                    <h1>Visitors</h1>
+
+                    <p>
+                        Monitor and manage all visitor entries and exits in your society.
+                    </p>
+
+                </div>
+
+                <button
+                    className="dashboard-btn"
+                    onClick={() => navigate("/dashboard")}
+                >
+                    Dashboard
+                </button>
+
+            </div>
+
+            <div className="visitor-actions">
 
                 {role === "admin" && (
                     <button
@@ -100,6 +124,56 @@ const Visitors = () => {
 
             </div>
 
+            <div className="stats-grid">
+
+                <div className="stat-card">
+
+                    <div className="card-icon blue">
+                        <FaUsers />
+                    </div>
+                    <h2>{visitors.length}</h2>
+
+                    <p>Total Visitors</p>
+
+                </div>
+
+                <div className="stat-card">
+
+                    <div className="card-icon green">
+                        <FaDoorOpen />
+                    </div>
+                    <h2>
+                        {visitors.filter(v => v.status === "Inside").length}
+                    </h2>
+
+                    <p>Inside Society</p>
+
+                </div>
+
+                <div className="stat-card">
+
+                    <div className="card-icon orange">
+                        <FaDoorClosed />
+                    </div>
+                    <h2>
+                        {visitors.filter(v => v.status === "Left").length}
+                    </h2>
+
+                    <p>Exited</p>
+
+                </div>
+
+                <div className="stat-card">
+                    <div className="card-icon purple">
+                        <FaSearch />
+                    </div>
+                    <h2>{filteredVisitors.length}</h2>
+
+                    <p>Search Results</p>
+
+                </div>
+
+            </div>
             {search && totalVisits > 0 && (
                 <div className="visitor-summary">
 
@@ -157,15 +231,25 @@ const Visitors = () => {
                                     <td>{visitor.date}</td>
                                     <td>{visitor.timeIn}</td>
                                     <td>{visitor.timeOut}</td>
-                                    <td>{visitor.status}</td>
+                                    <td>
+
+                                        <span
+                                            className={`status-badge ${visitor.status.toLowerCase()}`}
+                                        >
+                                            {visitor.status}
+                                        </span>
+
+                                    </td>
                                     {role === "admin" && (
                                         <td>
-                                            <button
-                                                className="left-btn"
-                                                onClick={() => markVisitorLeft(visitor._id)}
-                                            >
-                                                Mark Left
-                                            </button>
+                                            {visitor.status === "Inside" && (
+                                                <button
+                                                    className="left-btn"
+                                                    onClick={() => handleMarkLeft(visitor._id)}
+                                                >
+                                                  <FaSignOutAlt />  Mark Exit
+                                                </button>
+                                            )}
                                         </td>
                                     )}
                                 </tr>

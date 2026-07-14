@@ -1,0 +1,697 @@
+/* =====================================================
+   SETTINGS PAGE
+===================================================== */
+
+.settings-container{
+
+    display:flex;
+
+    min-height:100vh;
+
+    background:linear-gradient(
+        120deg,
+        #c9defd 0%,
+        #dbeafe 35%,
+        #edf6ff 70%,
+        #d6e7ff 100%
+    );
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+/* =====================================================
+   Background Glow
+===================================================== */
+
+.settings-container::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:380px;
+
+    height:380px;
+
+    border-radius:50%;
+
+    background:#3b82f615;
+
+    top:-130px;
+
+    right:-120px;
+
+    filter:blur(35px);
+
+}
+
+.settings-container::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:300px;
+
+    height:300px;
+
+    border-radius:50%;
+
+    background:#ef444414;
+
+    bottom:-120px;
+
+    left:-120px;
+
+    filter:blur(35px);
+
+}
+
+/* =====================================================
+   Main Content
+===================================================== */
+
+.settings-content{
+
+    flex:1;
+
+    margin-left:250px;
+
+    padding:40px;
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+/* =====================================================
+   Header
+===================================================== */
+
+.settings-header{
+
+  margin-bottom:50px;
+
+}
+
+.settings-tag{
+
+    display:inline-block;
+
+    padding:8px 18px;
+
+    border-radius:999px;
+
+    background:rgba(59,130,246,.12);
+
+    color:#2563eb;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    margin-bottom:18px;
+
+}
+
+.settings-content h2{
+
+    font-size:42px;
+
+    color:#0f172a;
+
+    margin-bottom:12px;
+
+    font-weight:800;
+
+}
+
+.settings-subtitle{
+
+    color:#64748b;
+
+    font-size:17px;
+
+    line-height:1.7;
+
+    max-width:600px;
+
+    margin-bottom:30px;
+
+}
+/* =====================================================
+   SETTINGS CARDS
+===================================================== */
+
+.settings-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:rgba(255,255,255,.62);
+
+    backdrop-filter:blur(22px);
+    -webkit-backdrop-filter:blur(22px);
+
+    border:1px solid rgba(255,255,255,.38);
+
+    border-radius:28px;
+
+    padding:34px;
+
+    margin-bottom:30px;
+
+    box-shadow:
+        0 20px 45px rgba(15,23,42,.08),
+        inset 0 1px 0 rgba(255,255,255,.35);
+
+    transition:.35s;
+      
+
+}
+
+
+.settings-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:
+        0 28px 60px rgba(15,23,42,.12),
+        0 10px 25px rgba(59,130,246,.10);
+
+}
+
+/* Floating Glow */
+
+.settings-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+
+    height:180px;
+
+    border-radius:50%;
+
+    top:-70px;
+
+    right:-60px;
+
+    background:
+        radial-gradient(circle,
+        rgba(59,130,246,.18),
+        transparent 70%);
+
+}
+
+/* Card Heading */
+
+.settings-card h3{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-bottom:28px;
+
+    color:#1e293b;
+
+    font-size:24px;
+
+    font-weight:700;
+
+}
+
+/* Divider */
+
+.settings-card h3::after{
+
+    content:"";
+
+    flex:1;
+
+    height:2px;
+
+    margin-left:12px;
+
+    background:linear-gradient(
+        to right,
+        rgba(37,99,235,.35),
+        transparent
+    );
+
+}
+/* =====================================================
+   PROFILE SECTION
+===================================================== */
+
+.profile-image{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:30px;
+
+    margin-bottom:35px;
+
+    flex-wrap:wrap;
+
+}
+
+/* Avatar */
+
+.avatar{
+
+    position:relative;
+
+    width:120px;
+
+    height:120px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:42px;
+
+    font-weight:700;
+
+    color:white;
+
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #60a5fa
+    );
+
+    box-shadow:
+        0 18px 40px rgba(37,99,235,.30);
+
+    overflow:hidden;
+
+    transition:.35s;
+
+}
+
+.avatar:hover{
+
+    transform:scale(1.05);
+
+}
+
+/* Animated Ring */
+
+.avatar::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-8px;
+
+    border-radius:50%;
+
+    border:2px solid rgba(37,99,235,.25);
+
+    animation:avatarPulse 2.8s infinite;
+
+}
+
+@keyframes avatarPulse{
+
+    0%{
+        transform:scale(.95);
+        opacity:1;
+    }
+
+    100%{
+        transform:scale(1.15);
+        opacity:0;
+    }
+
+}
+
+/* Uploaded Image */
+
+.profile-preview{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+}
+
+/* Upload Button */
+
+.profile-image button{
+
+    padding:14px 24px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #3b82f6
+    );
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+    box-shadow:
+        0 14px 30px rgba(37,99,235,.25);
+
+}
+
+.profile-image button:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 20px 38px rgba(37,99,235,.35);
+
+}
+/* =====================================================
+   INPUTS
+===================================================== */
+
+.settings-card input,
+.settings-card textarea{
+
+    width:100%;
+
+    padding:16px 18px;
+
+    margin-bottom:20px;
+
+    border:1px solid rgba(203,213,225,.8);
+
+    border-radius:16px;
+
+    background:rgba(255,255,255,.70);
+
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+
+    font-size:15px;
+
+    color:#0f172a;
+
+    transition:.35s;
+
+    outline:none;
+
+    box-sizing:border-box;
+
+}
+
+.settings-card input::placeholder,
+.settings-card textarea::placeholder{
+
+    color:#94a3b8;
+
+}
+
+.settings-card input:focus,
+.settings-card textarea:focus{
+
+    border-color:#2563eb;
+
+    background:white;
+
+    box-shadow:
+        0 0 0 4px rgba(37,99,235,.12),
+        0 12px 28px rgba(37,99,235,.08);
+
+}
+
+.settings-card textarea{
+
+    resize:none;
+
+    min-height:120px;
+
+}
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.save-btn,
+.update-password-btn{
+
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:16px;
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.35s;
+      margin-top:30px;
+
+}
+
+/* Save Button */
+
+.save-btn{
+
+    background:linear-gradient(
+        135deg,
+        #16a34a,
+        #22c55e
+    );
+
+    box-shadow:
+        0 16px 34px rgba(34,197,94,.25);
+
+}
+
+.save-btn:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 22px 42px rgba(34,197,94,.35);
+
+}
+
+/* Password Button */
+
+.update-password-btn{
+
+    margin-top:15px;
+
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #3b82f6
+    );
+
+    box-shadow:
+        0 16px 34px rgba(37,99,235,.25);
+
+}
+
+.update-password-btn:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 22px 42px rgba(37,99,235,.35);
+
+}
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:1024px){
+
+    .settings-content{
+
+        margin-left:0;
+
+        padding:30px;
+
+    }
+
+    .settings-card{
+
+        padding:28px;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .settings-content{
+
+        padding:18px;
+
+    }
+
+    .settings-content h2{
+
+        font-size:34px;
+
+    }
+
+    .settings-subtitle{
+
+        font-size:15px;
+
+    }
+
+    .settings-card{
+
+        padding:22px;
+
+        border-radius:22px;
+
+    }
+
+    .settings-card h3{
+
+        font-size:22px;
+
+    }
+
+    .profile-image{
+
+        flex-direction:column;
+
+        justify-content:center;
+
+        align-items:center;
+
+        text-align:center;
+
+    }
+
+    .avatar{
+
+        width:100px;
+
+        height:100px;
+
+        font-size:36px;
+
+    }
+
+    .profile-image button{
+
+        width:100%;
+
+    }
+
+    .save-btn,
+    .update-password-btn{
+
+        width:100%;
+
+    }
+
+}
+
+@media(max-width:480px){
+
+    .settings-content{
+
+        padding:14px;
+
+    }
+
+    .settings-card{
+
+        padding:18px;
+
+    }
+
+    .settings-content h2{
+
+        font-size:30px;
+
+    }
+
+    .settings-tag{
+
+        font-size:12px;
+
+        padding:7px 14px;
+
+    }
+
+    .avatar{
+
+        width:90px;
+
+        height:90px;
+
+        font-size:32px;
+
+    }
+
+}
+
+/* =====================================================
+   SCROLL
+===================================================== */
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+/* =====================================================
+   TEXT SELECTION
+===================================================== */
+
+::selection{
+
+    background:#2563eb;
+
+    color:white;
+
+}

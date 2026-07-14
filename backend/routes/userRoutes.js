@@ -45,10 +45,13 @@ router.post("/signup", async (req, res) => {
 
         await newUser.save();
 
-        await Flat.findOneAndUpdate(
+        const updatedFlat = await Flat.findOneAndUpdate(
             { flatNo },
-            { occupied: true }
+            { occupied: true },
+            { new: true }
         );
+
+        console.log(updatedFlat);
 
         res.status(201).json({
             message: "Account Created Successfully"
@@ -114,6 +117,42 @@ router.put("/approve/:id", async (req, res) => {
     }
 
 });
+// Reject Resident
+router.put("/reject/:id", async (req, res) => {
+
+    try {
+
+        const user = await User.findByIdAndUpdate(
+            req.params.id,
+            { status: "Rejected" },
+            { new: true }
+        );
+
+        if (!user) {
+            return res.status(404).json({
+                message: "User not found"
+            });
+        }
+
+        await Flat.findOneAndUpdate(
+            { flatNo: user.flatNo },
+            { occupied: false }
+        );
+
+        res.json({
+            message: "Resident rejected successfully",
+            user
+        });
+
+    } catch (error) {
+
+        res.status(500).json({
+            message: error.message
+        });
+
+    }
+
+});
 // Login
 router.post("/login", async (req, res) => {
 
@@ -137,12 +176,19 @@ router.post("/login", async (req, res) => {
             });
         }
 
-        if (user.status !== "Approved") {
-            return res.status(400).json({
-                success: false,
-                message: "Your account is waiting for approval"
-            });
-        }
+if (user.status === "Pending") {
+    return res.status(400).json({
+        success: false,
+        message: "Your account is waiting for approval."
+    });
+}
+
+if (user.status === "Rejected") {
+    return res.status(400).json({
+        success: false,
+        message: "Your registration request has been rejected by the society administrator. Contact society Secretary"
+    });
+}
 
         res.json({
             success: true,

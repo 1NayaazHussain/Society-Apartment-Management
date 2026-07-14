@@ -1,12 +1,84 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* ===========================
+   GOOGLE FONT
+=========================== */
+
+:root{
+
+    /* COLORS */
+
+    --primary:#2563eb;
+    --primary-hover:#1d4ed8;
+
+    --background:#f8fafc;
+    --surface:#ffffff;
+
+    --text:#0f172a;
+    --text-light:#64748b;
+
+    --border:#e2e8f0;
+
+    --success:#22c55e;
+    --warning:#f59e0b;
+    --danger:#ef4444;
+
+    /* SHADOWS */
+
+    --shadow-sm:0 2px 8px rgba(15,23,42,.05);
+    --shadow-md:0 10px 30px rgba(15,23,42,.08);
+    --shadow-lg:0 18px 40px rgba(15,23,42,.12);
+
+    /* RADIUS */
+
+    --radius-sm:10px;
+    --radius-md:16px;
+    --radius-lg:22px;
+
+    /* SPACING */
+
+    --transition:.3s ease;
 }
 
-html,
-body,
-#root {
-  width: 100%;
-  min-height: 100vh;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:"Inter",sans-serif;
+
+    background:var(--background);
+
+    color:var(--text);
+
+    line-height:1.6;
+
+}
+
+button,
+input,
+textarea,
+select{
+
+    font-family:inherit;
+
+}
+
+a{
+
+    text-decoration:none;
+    color:inherit;
+
+}
+
+img{
+
+    max-width:100%;
+    display:block;
+
 }

@@ -1,114 +1,400 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* ===========================
+   RESET
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 html,
 body,
-#root {
-    width: 100%;
-    height: 100%;
+#root{
+    width:100%;
+    height:100%;
+    font-family:"Poppins",sans-serif;
 }
 
-body {
-    min-height: 100vh;
-    background: linear-gradient(
-        135deg,
-        #0f172a,
-        #1e3a8a,
-        #3b82f6
-    );
-}
+/* ===========================
+   BACKGROUND
+=========================== */
 
 .login-container{
-    height:100vh;
+
+    min-height:100vh;
+
     display:flex;
+
     justify-content:center;
+
     align-items:center;
-    padding:20px;
+
+    padding:30px;
+
+    background:
+    linear-gradient(
+        rgba(10,25,47,.70),
+        rgba(30,64,175,.60)
+    ),
+    url("../assets/login-bg.png");
+
+    background-size:cover;
+
+    background-position:center;
+
+    background-repeat:no-repeat;
+
 }
 
+/* ===========================
+   CARD
+=========================== */
+
 .login-card{
-    width:400px;
-    padding:40px;
-    border-radius:20px;
 
-    background:rgba(255,255,255,0.1);
- -webkit-backdrop-filter: blur(15px);
-backdrop-filter: blur(15px);
+    width:450px;
 
-    border:1px solid rgba(255,255,255,0.2);
+    padding:45px;
+
+    border-radius:28px;
+
+    background:rgba(255,255,255,.12);
+
+    backdrop-filter:blur(22px);
+    -webkit-backdrop-filter:blur(22px);
+
+    border:1px solid rgba(255,255,255,.20);
 
     box-shadow:
-    0 8px 32px rgba(0,0,0,0.3),
-    0 0 30px rgba(59,130,246,0.3);
+        0 20px 60px rgba(0,0,0,.35),
+        0 0 40px rgba(59,130,246,.18);
 
-    transform-style:preserve-3d;
-    transition:all 0.4s ease;
+    transition:.35s ease;
+    position:relative;
+z-index:10;
+
 }
 
 .login-card:hover{
-    transform:
-    translateY(-8px)
-    rotateX(3deg)
-    rotateY(-3deg);
+
+    transform:translateY(-8px);
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.4),
+        0 0 60px rgba(59,130,246,.35);
+
+}
+/* ===========================
+   LOGIN HEADER
+=========================== */
+
+.login-header{
+
+    text-align:center;
+
+    margin-bottom:35px;
+
 }
 
-.login-card h2{
-    text-align:center;
-    color:white;
-    margin-bottom:25px;
-    font-size:28px;
+.login-logo{
+
+    width:80px;
+
+    height:80px;
+
+    margin:0 auto 20px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:38px;
+
+    background:rgba(255,255,255,.15);
+
+    border:1px solid rgba(255,255,255,.25);
+
+    -webkit-backdrop-filter:blur(12px);
+    backdrop-filter:blur(12px);
+
+    box-shadow:
+        0 8px 25px rgba(59,130,246,.30);
+
 }
+
+.login-header h2{
+
+    color:#fff;
+
+    font-size:34px;
+
+    font-weight:700;
+
+    margin-bottom:10px;
+
+    letter-spacing:.5px;
+
+}
+
+.login-header p{
+
+    color:rgba(255,255,255,.85);
+
+    font-size:15px;
+
+    line-height:24px;
+
+}
+/* ===========================
+   INPUTS
+=========================== */
 
 .login-card input{
+
     width:100%;
-    padding:14px;
-    margin-bottom:18px;
 
-    border:none;
-    outline:none;
+    height:58px;
 
-    border-radius:10px;
+    padding:0 20px;
 
-    background:rgba(255,255,255,0.15);
+    margin-bottom:22px;
+
+    border-radius:14px;
+
+    border:1px solid rgba(255,255,255,.18);
+
+    background:rgba(255,255,255,.12);
+
     color:white;
 
-    transition:0.3s;
+    font-size:15px;
+
+    outline:none;
+
+    transition:.35s;
+
 }
 
 .login-card input::placeholder{
-    color:#e5e7eb;
+
+    color:rgba(255,255,255,.75);
+
+}
+
+.login-card input:hover{
+
+    background:rgba(255,255,255,.18);
+
 }
 
 .login-card input:focus{
-    background:rgba(255,255,255,0.25);
-    box-shadow:0 0 15px rgba(255,255,255,0.3);
+
+    background:rgba(255,255,255,.22);
+
+    border-color:#60a5fa;
+
+    box-shadow:
+        0 0 0 4px rgba(96,165,250,.18),
+        0 0 18px rgba(37,99,235,.35);
+
+    transform:translateY(-2px);
+
 }
+/* ===========================
+   LOGIN BUTTON
+=========================== */
 
 .login-card button{
+
     width:100%;
-    padding:14px;
+
+    height:58px;
 
     border:none;
-    border-radius:10px;
 
-    background:white;
-    color:#1e3a8a;
+    border-radius:14px;
 
-    font-size:16px;
-    font-weight:bold;
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #3b82f6
+    );
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:700;
 
     cursor:pointer;
-    transition:0.3s;
+
+    transition:.35s;
+
+    margin-top:10px;
+
+    box-shadow:
+        0 10px 30px rgba(37,99,235,.35);
+
 }
 
 .login-card button:hover{
-    transform:translateY(-3px);
-    box-shadow:0 8px 20px rgba(255,255,255,0.4);
+
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 18px 40px rgba(37,99,235,.45);
+
 }
 
 .login-card button:active{
-    transform:translateY(0);
+
+    transform:scale(.98);
+
+}
+/* ===========================
+   SIGNUP LINK
+=========================== */
+
+.login-link{
+
+    margin-top:24px;
+
+    text-align:center;
+
+    color:rgba(255,255,255,.85);
+
+    font-size:15px;
+
+}
+
+.login-link a{
+
+    color:#7dd3fc;
+
+    font-weight:700;
+
+    text-decoration:none;
+
+    transition:.3s;
+
+}
+
+.login-link a:hover{
+
+    color:#ffffff;
+
+    text-shadow:0 0 12px rgba(125,211,252,.8);
+
+}
+/* ===========================
+   BACKGROUND EFFECTS
+=========================== */
+
+.login-container::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:320px;
+
+    height:320px;
+
+    border-radius:50%;
+
+    top:-120px;
+
+    left:-120px;
+
+    background:rgba(59,130,246,.28);
+
+    filter:blur(80px);
+
+    animation:moveOne 8s ease-in-out infinite alternate;
+
+}
+
+.login-container::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:260px;
+
+    height:260px;
+
+    border-radius:50%;
+
+    bottom:-80px;
+
+    right:-80px;
+
+    background:rgba(255,255,255,.18);
+
+    filter:blur(70px);
+
+    animation:moveTwo 10s ease-in-out infinite alternate;
+
+}
+@keyframes moveOne{
+
+    from{
+
+        transform:translate(0,0);
+
+    }
+
+    to{
+
+        transform:translate(40px,30px);
+
+    }
+
+}
+
+@keyframes moveTwo{
+
+    from{
+
+        transform:translate(0,0);
+
+    }
+
+    to{
+
+        transform:translate(-40px,-20px);
+
+    }
+
+}
+.login-card{
+
+    animation:cardAppear .8s ease;
+
+}
+
+@keyframes cardAppear{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(40px) scale(.95);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0) scale(1);
+
+    }
+
 }

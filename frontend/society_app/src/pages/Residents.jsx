@@ -2,6 +2,15 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../styles/Residents.css";
 import { useNavigate } from "react-router-dom";
+import {
+  FaUsers,
+  FaCheckCircle,
+  FaClock,
+  FaSearch,
+  FaEdit,
+  FaTrash,
+  FaArrowLeft
+} from "react-icons/fa";
 
 const Residents = () => {
   const [residents, setResidents] = useState([]);
@@ -53,14 +62,32 @@ const Residents = () => {
   );
   return (
     <div className="page">
-      <h2>Residents</h2>
-      <button
-        className="dashboard-btn"
-        onClick={() => navigate("/dashboard")}
-      >
-        Back to Dashboard
-      </button>
+      <div className="page-header">
+
+        <div>
+
+          <span className="header-tag">
+            RESIDENT MANAGEMENT
+          </span>
+
+          <h2>Residents</h2>
+
+          <p>
+            Manage, monitor and organize all society residents from one place.
+          </p>
+
+        </div>
+
+        <button
+          className="dashboard-btn"
+          onClick={() => navigate("/dashboard")}
+        >
+          Dashboard
+        </button>
+
+      </div>
       <div className="resident-actions">
+
 
         {role === "admin" && (
           <button
@@ -80,7 +107,43 @@ const Residents = () => {
         />
 
       </div>
+      <div className="stats-container">
 
+        <div className="stat-card">
+          <div className="stat-icon"><FaUsers /></div>
+          <h2>{residents.length}</h2>
+          <p>Total Residents</p>
+        </div>
+
+        <div className="stat-card">
+          <div className="stat-icon">   <FaCheckCircle /></div>
+          <h2>
+            {
+              residents.filter(r => r.status === "Active").length
+            }
+          </h2>
+          <p>Approved</p>
+        </div>
+
+        <div className="stat-card">
+          <div className="stat-icon">    <FaClock /></div>
+          <h2>
+            {
+              residents.filter(r => r.status !== "Active").length
+            }
+          </h2>
+          <p>Pending</p>
+        </div>
+
+        <div className="stat-card">
+          <div className="stat-icon">    <FaSearch /></div>
+          <h2>{filteredResidents.length}</h2>
+          <p>Search Results</p>
+        </div>
+
+
+
+      </div>
       {loading ? (
         <p>Loading residents...</p>
       ) : (
@@ -94,33 +157,44 @@ const Residents = () => {
                 <th>Phone</th>
                 <th>Email</th>
                 <th>Status</th>
+                {role === "admin" && <th>Actions</th>}
               </tr>
             </thead>
 
             <tbody>
-              {filteredResidents.map((r,index) => (
+              {filteredResidents.map((r, index) => (
                 <tr key={r._id}>
                   <td>{index + 1}</td>
                   <td>{r.name}</td>
                   <td>{r.flatNo}</td>
                   <td>{r.phone}</td>
                   <td>{r.email}</td>
-                  <td>{r.status}</td>
+                  <td>
+
+                    <span
+                      className={`status-badge ${r.status.toLowerCase()}`}
+                    >
+                      {r.status}
+                    </span>
+
+                  </td>
                   {role === "admin" && (
                     <td>
+                        <div className="action-buttons">
                       <button
                         className="edit-btn"
                         onClick={() => navigate(`/edit-resident/${r._id}`)}
                       >
-                        Edit
+                        <FaEdit />Edit
                       </button>
 
                       <button
                         className="delete-btn"
                         onClick={() => handleDelete(r._id)}
                       >
-                        Delete
+                        <FaTrash />  Delete
                       </button>
+                      </div>
                     </td>
                   )}
                 </tr>

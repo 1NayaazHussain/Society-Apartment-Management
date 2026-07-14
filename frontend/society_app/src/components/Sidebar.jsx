@@ -1,5 +1,5 @@
 import "../styles/Sidebar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import {
   FaHome,
   FaUsers,
@@ -11,45 +11,141 @@ import {
   FaCreditCard,
   FaChartBar,
   FaCog,
-  FaSignOutAlt
+  FaSignOutAlt,
+  FaBuilding,
+  FaTimes
 } from "react-icons/fa";
 
-function Sidebar() {
+function Sidebar({ sidebarOpen, setSidebarOpen }) {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/");
+  };
+
   return (
-    <div className="sidebar">
-      <h2>GokulDham Society</h2>
+    <aside className={`sidebar ${sidebarOpen ? "open" : ""}`}>
+      <button
+        className="close-sidebar"
+        onClick={() => setSidebarOpen(false)}
+      >
+        <FaTimes />
+      </button>
 
-      <ul className="sidebar-menu">
+      {/* Logo */}
+      <div className="sidebar-logo">
 
-        <li>
-          <Link to="/" className="menu-link">
-            <FaHome /> <span>Dashboard</span>
-          </Link>
-        </li>
+        <div className="logo-icon">
+          <FaBuilding />
+        </div>
 
-        <li>
-          <Link to="/residents" className="menu-link">
-            <FaUsers /> <span>Residents</span>
-          </Link>
-        </li>
+        <div className="logo-text">
+          <h2>GokulDham</h2>
+          <p>Society Management</p>
+        </div>
 
-        <li>
-          <Link to="/visitors" className="menu-link">
-            <FaUserFriends /> <span>Visitors</span>
-          </Link>
-        </li>
+      </div>
 
-        <li className="menu-item"><FaExclamationCircle /> <span>Complaints</span></li>
-        <li className="menu-item"><FaBullhorn /> <span>Notices</span></li>
-        <li className="menu-item"><FaCalendarAlt /> <span>Events</span></li>
-        <li className="menu-item"><FaFileAlt /> <span>Documents</span></li>
-        <li className="menu-item"><FaCreditCard /> <span>Payments</span></li>
-        <li className="menu-item"><FaChartBar /> <span>Reports</span></li>
-        <li className="menu-item"><FaCog /> <span>Settings</span></li>
-        <li className="menu-item"><FaSignOutAlt /> <span>Logout</span></li>
+      {/* Navigation */}
 
-      </ul>
-    </div>
+      <div className="sidebar-nav">
+
+        <span className="menu-title">MAIN</span>
+
+        <Link
+          to="/dashboard"
+          className={`menu-link ${location.pathname === "/dashboard" ? "active" : ""
+            }`}
+        >
+          <FaHome />
+          <span>Dashboard</span>
+        </Link>
+
+        <Link
+          to="/residents"
+          className={`menu-link ${location.pathname === "/residents" ? "active" : ""
+            }`}
+        >
+          <FaUsers />
+          <span>Residents</span>
+        </Link>
+
+        <Link
+          to="/visitors"
+          className={`menu-link ${location.pathname === "/visitors" ? "active" : ""
+            }`}
+        >
+          <FaUserFriends />
+          <span>Visitors</span>
+        </Link>
+
+        <span className="menu-title">MANAGEMENT</span>
+
+        <div
+          className="menu-link"
+          onClick={() => navigate("/complaints")}
+        >
+          <FaExclamationCircle />
+          <span>Complaints</span>
+        </div>
+
+        <div className="menu-link"
+         onClick={() => navigate("/notices")}
+        >
+          <FaBullhorn />
+          <span>Notices</span>
+        </div>
+
+        <div
+          className="menu-link"
+          onClick={() => navigate("/events")}
+        >
+          <FaCalendarAlt />
+          <span>Events</span>
+        </div>
+
+        <div className="menu-link">
+          <FaFileAlt />
+          <span>Documents</span>
+        </div>
+
+        <div className="menu-link">
+          <FaCreditCard />
+          <span>Payments</span>
+        </div>
+
+        <div className="menu-link" 
+          onClick={() => navigate("/reports")}
+          >
+          <FaChartBar />
+          <span>Reports</span>
+        </div>
+
+      </div>
+
+      {/* Bottom */}
+
+      <div className="sidebar-bottom">
+
+        <Link
+          to="/settings"
+          className={`menu-link ${location.pathname === "/settings" ? "active" : ""
+            }`}
+        >
+          <FaCog />
+          <span>Settings</span>
+        </Link>
+
+        <button className="logout-btn" onClick={handleLogout}>
+          <FaSignOutAlt />
+          <span>Logout</span>
+        </button>
+
+      </div>
+
+    </aside>
   );
 }
 

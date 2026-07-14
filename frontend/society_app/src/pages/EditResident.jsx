@@ -74,7 +74,7 @@ console.log(formData);
           className="back-btn"
           onClick={() => navigate("/residents")}
         >
-          ← Back to Residents
+          Back to Residents
         </button>
 
         <h2>Edit Resident</h2>
