@@ -22,6 +22,7 @@ import EditNotice from "../pages/EditNotice";
 import Reports from "../pages/Reports";
 import Documents from "../pages/Documents";
 import AddDocument from "../pages/AddDocument";
+import Payments from "../pages/Payments";
 
 export default function AppRoutes() {
   return (
@@ -49,6 +50,7 @@ export default function AppRoutes() {
         <Route path="/reports" element={<Reports />} />
         <Route path="/documents" element={<Documents />} />
         <Route path="/add-document" element={<AddDocument />} />
+        <Route path="/payments" element={<Payments />} />
         <Route
           path="/edit-event/:id"
           element={<EditEvent />}

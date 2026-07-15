@@ -39,7 +39,7 @@ function Documents() {
   return (
     <div className="documents-container dashboard-container">
       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-      
+
       <div className="main-content">
         <div className="top-navbar">
           <div className="top-navbar-title-wrapper">
@@ -91,7 +91,7 @@ function Documents() {
                     className="view-btn"
                     download
                   >
-                    <FaDownload /> View/Download
+                    <FaDownload /> View
                   </a>
                   {role === "admin" && (
                     <button className="delete-btn" onClick={() => handleDelete(doc._id)}>

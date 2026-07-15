@@ -116,12 +116,20 @@ function Dashboard() {
   const fetchPendingUsers = async () => {
     try {
 
-      const res = await axios.get(
-        "http://localhost:5000/api/users/pending"
-      );
-
-      setPendingUsers(res.data);
-
+        const res = await axios.get(
+          "http://localhost:5000/api/users/pending"
+        );
+        console.log("Fetched pending users:", res.data);
+        // Ensure each user has required fields to avoid UI crashes
+        const sanitized = res.data.map(u => ({
+          ...u,
+          flatNo: u.flatNo || "",
+          phone: u.phone || "",
+          email: u.email || "",
+          fullName: u.fullName || ""
+        }));
+        // setPendingUsers(res.data); // removed duplicatenitized);
+        setPendingUsers(sanitized);
     } catch (error) {
 
       console.log(error);
@@ -145,6 +153,8 @@ function Dashboard() {
       alert(res.data.message);
 
       fetchPendingUsers();
+      // Force reload to update Residents table
+      window.location.reload();
 
     } catch (error) {
 

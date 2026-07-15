@@ -111,7 +111,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
           <span>Documents</span>
         </div>
 
-        <div className="menu-link">
+        <div className="menu-link" onClick={() => navigate("/payments")}>
           <FaCreditCard />
           <span>Payments</span>
         </div>

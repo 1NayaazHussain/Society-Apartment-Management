@@ -53,8 +53,8 @@ const PendingResidents = () => {
 
   const filteredUsers = users.filter(
     (user) =>
-      user.fullName.toLowerCase().includes(search.toLowerCase()) ||
-      user.flatNo.toLowerCase().includes(search.toLowerCase())
+      user.fullName?.toLowerCase().includes(search.toLowerCase()) ||
+      user.flatNo?.toLowerCase().includes(search.toLowerCase())
   );
 
   return (

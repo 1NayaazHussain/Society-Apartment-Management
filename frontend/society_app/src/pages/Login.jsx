@@ -27,14 +27,21 @@ export default function Login() {
           res.data.user.role
         );
         localStorage.setItem(
-  "fullName",
-  res.data.user.fullName
-);
-
-localStorage.setItem(
-  "flatNo",
-  res.data.user.flatNo
-);
+          "fullName",
+          res.data.user.fullName
+        );
+        localStorage.setItem(
+          "flatNo",
+          res.data.user.flatNo
+        );
+        localStorage.setItem(
+          "userId",
+          res.data.user._id
+        );
+        localStorage.setItem(
+          "email",
+          res.data.user.email
+        );
 
         alert("Login successful");
      

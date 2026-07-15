@@ -3,6 +3,7 @@ const router = express.Router();
 
 const User = require("../models/User");
 const Flat = require("../models/Flat");
+const Resident = require("../models/Resident");
 
 
 // Signup
@@ -103,9 +104,20 @@ router.put("/approve/:id", async (req, res) => {
             });
         }
 
+        // Create a Resident record upon approval
+        const newResident = new Resident({
+            name: user.fullName,
+            flatNo: user.flatNo,
+            phone: user.phone,
+            email: user.email,
+            status: "Active"
+        });
+        await newResident.save();
+
         res.json({
             message: "Resident approved successfully",
-            user
+            user,
+            resident: newResident
         });
 
     } catch (error) {
